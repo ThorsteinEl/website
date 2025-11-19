@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Thorstein</title>
+  <style>
+    :root {
+      --bg: #0f172a;
+      --bg-elevated: #020617;
+      --card-bg: #020617;
+      --accent: #38bdf8;
+      --accent-soft: rgba(56, 189, 248, 0.12);
+      --text-main: #e5e7eb;
+      --text-muted: #9ca3af;
+      --border-subtle: #1f2937;
+      --shadow-soft: 0 18px 45px rgba(15, 23, 42, 0.65);
+      --radius-lg: 18px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.6;
+      color: var(--text-main);
+      background: radial-gradient(circle at top left, #1e293b, #020617 50%, #000 100%);
+      display: flex;
+      justify-content: center;
+      padding: 32px 16px;
+    }
+
+    .page {
+      width: 100%;
+      max-width: 900px;
+      background: linear-gradient(135deg, rgba(15, 23, 42, 0.94), rgba(2, 6, 23, 0.98));
+      border-radius: 24px;
+      border: 1px solid rgba(148, 163, 184, 0.18);
+      box-shadow: var(--shadow-soft);
+      padding: 28px 22px 22px;
+      backdrop-filter: blur(18px);
+    }
+
+    .header-right {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 8px;
+    }
+
+    .lang-switcher {
+      display: flex;
+      gap: 8px;
+      font-size: 0.82rem;
+    }
+
+    .lang-switcher a {
+      text-decoration: none;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      color: var(--text-muted);
+      background: rgba(15, 23, 42, 0.9);
+      transition: all 0.18s ease;
+    }
+
+    .lang-switcher a:hover {
+      color: var(--accent);
+      border-color: rgba(56, 189, 248, 0.7);
+      box-shadow: 0 0 0 1px rgba(56, 189, 248, 0.35);
+    }
+
+    .lang-switcher a.active {
+      color: var(--accent);
+      border-color: rgba(56, 189, 248, 0.9);
+      background: var(--accent-soft);
+    }
+
+    header {
+      border-bottom: 1px solid rgba(148, 163, 184, 0.22);
+      padding-bottom: 18px;
+      margin-bottom: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+
+    .hero-text {
+      max-width: 540px;
+    }
+
+    h1 {
+      margin: 0 0 6px;
+      font-size: 2.1rem;
+      letter-spacing: -0.02em;
+    }
+
+    .subtitle {
+      margin: 0;
+      color: var(--text-muted);
+      font-size: 0.98rem;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      margin-top: 8px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    nav {
+      display: flex;
+      gap: 10px;
+      font-size: 0.9rem;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--text-muted);
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      transition: all 0.18s ease;
+    }
+
+    nav a:hover {
+      color: var(--accent);
+      border-color: rgba(56, 189, 248, 0.5);
+      background: rgba(15, 23, 42, 0.7);
+    }
+
+    main {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    section {
+      background: var(--card-bg);
+      border-radius: var(--radius-lg);
+      padding: 18px 16px 16px;
+      border: 1px solid var(--border-subtle);
+      position: relative;
+      overflow: hidden;
+    }
+
+    section::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top right, rgba(56, 189, 248, 0.12), transparent 60%);
+      opacity: 0;
+      transition: opacity 0.2s ease;
+      pointer-events: none;
+    }
+
+    section:hover::before {
+      opacity: 1;
+    }
+
+    h2 {
+      margin: 0 0 8px;
+      font-size: 1.1rem;
+    }
+
+    p {
+      margin: 0 0 8px;
+      font-size: 0.95rem;
+    }
+
+    ul {
+      margin: 4px 0 0;
+      padding-left: 18px;
+      font-size: 0.95rem;
+    }
+
+    li + li {
+      margin-top: 8px;
+    }
+
+    .project-title {
+      font-weight: 600;
+    }
+
+    .project-meta {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 2px 8px;
+      margin-right: 6px;
+      margin-top: 3px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    .timeline-list {
+      list-style: none;
+      padding-left: 0;
+      margin: 0;
+      border-left: 1px solid rgba(148, 163, 184, 0.35);
+    }
+
+    .timeline-item {
+      padding-left: 14px;
+      position: relative;
+      margin: 0 0 10px;
+    }
+
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      left: -5px;
+      top: 4px;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.2);
+    }
+
+    .timeline-date {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 2px;
+    }
+
+    a {
+      color: var(--accent);
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    #contact p {
+      margin-bottom: 10px;
+    }
+
+    .socials {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 4px;
+    }
+
+    .socials a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 30px;
+      height: 30px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      transition: all 0.18s ease;
+    }
+
+    .socials a:hover {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 1px rgba(56, 189, 248, 0.4);
+    }
+
+    .socials img {
+      width: 18px;
+      height: 18px;
+      display: block;
+    }
+
+    footer {
+      margin-top: 18px;
+      padding-top: 10px;
+      border-top: 1px solid rgba(148, 163, 184, 0.28);
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    footer span {
+      opacity: 0.9;
+    }
+
+    @media (max-width: 640px) {
+      .page {
+        padding: 18px 14px 16px;
+        border-radius: 18px;
+      }
+      .header-right {
+        align-items: flex-start;
+      }
+      header {
+        align-items: flex-start;
+      }
+      h1 {
+        font-size: 1.7rem;
+      }
+      nav {
+        margin-top: 6px;
+      }
+      section {
+        padding: 14px 12px 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <div class="hero-text">
+        <div class="pill">空间法 · 新兴技术 · 伦理学</div>
+        <h1>你好，我是 Thorstein</h1>
+        <p class="subtitle">
+          来自挪威的法律系学生，专注于新兴法律领域、国际合作，以及空间技术的监管与治理。
+        </p>
+      </div>
+
+      <div class="header-right">
+        <div class="lang-switcher">
+          <a href="index-no.html">Norsk</a>
+          <a href="index.html">English</a>
+          <a href="index-zh.html" class="active">中文</a>
+        </div>
+
+        <nav>
+          <a href="#about">关于我</a>
+          <a href="#projects">经验与项目</a>
+          <a href="#public-appearances">公开露面</a>
+          <a href="#writing">写作与出版</a>
+          <a href="#contact">联系方式</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section id="about">
+        <h2>关于我</h2>
+        <p>
+          我在挪威学习法律，并且常常花过多时间思考伦理与哲学问题。
+          我对新兴法律领域和国际合作具有特别浓厚的兴趣。
+        </p>
+        <p>
+          我曾在一个纳米卫星开发项目中担任法律顾问，并被选为挪威两名代表之一，
+          参加由欧洲空间法中心（European Centre for Space Law，ECSL）举办的年度空间法课程，
+          该中心隶属于欧洲空间局（European Space Agency，ESA）。
+        </p>
+      </section>
+
+      <section id="projects">
+        <h2>经验与项目</h2>
+        <ul>
+          <li>
+            <div class="project-title">法律顾问 · Interstellar UiA</div>
+            <div class="project-meta">
+              纳米卫星开发 · 出口管制 · 电信监管 · 国家安全法
+            </div>
+            <ul>
+              <li>为纳米卫星开发项目提供国际空间法及相关国内法律的合规咨询。</li>
+              <li>制定内部法律指南，确保在出口管制、电信和国家安全等领域的法规遵循。</li>
+              <li>与工程团队协作，将法律要求转化为可执行的项目规划。</li>
+            </ul>
+            <div>
+              <span class="tag">空间法</span>
+              <span class="tag">合规</span>
+            </div>
+          </li>
+          <li>
+            <div class="project-title">导师 · NORSTEC</div>
+            <div class="project-meta">志愿导师 · 挪威航天领域</div>
+            <ul>
+              <li>作为 NORSTEC 导师计划的志愿成员参与工作。</li>
+              <li>协助成员机构处理监管问题，包括技术（卫星、火箭）与组织（劳动法等）方面的法律问题。</li>
+            </ul>
+            <div>
+              <span class="tag">监管</span>
+              <span class="tag">指导工作</span>
+            </div>
+          </li>
+        </ul>
+      </section>
+
+      <section id="public-appearances">
+        <h2>公开露面</h2>
+
+        <h3>文章</h3>
+        <ul class="timeline-list">
+          <li class="timeline-item">
+            <div class="timeline-date">19 Sep 2025</div>
+            <a
+              href="https://www.finnmarksposten.no/thorstein-26-fra-havoysund-satser-pa-verdensrommet/s/5-94-323780"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              接受《Finnmarksposten》采访
+            </a>
+          </li>
+        </ul>
+
+        <h3>电视 / 电台</h3>
+        <ul class="timeline-list">
+          <li class="timeline-item">
+            <div class="timeline-date">22 Sep 2025</div>
+            <a
+              href="https://radio.nrk.no/serie/distriktsprogram-finnmark/sesong/202509/DKFI01018225#t=1h32m40s"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              关于空间法重要性的访谈 · NRK P1
+            </a>
+          </li>
+        </ul>
+
+        <h3>线下活动</h3>
+        <p>
+          2026 年第二季度：即将公布。
+        </p>
+      </section>
+
+      <section id="writing">
+        <h2>写作与出版</h2>
+        <p>
+          我撰写的内容涵盖多个领域，包括哲学、法律、伦理与科技。
+          这些文章代表了我跨领域的一些思考。
+        </p>
+
+        <h3>法律与政策</h3>
+        <p>
+          即将发布：我目前正在撰写一本《挪威航天监管手册》。
+        </p>
+
+        <h3>哲学</h3>
+        <ul class="timeline-list">
+          <li class="timeline-item">
+            <div class="timeline-date">Written March 2025 · Published November 2025</div>
+            <a href="writing/buddhismcritique.html">
+              A Critique of Buddhist Tradition
+            </a>
+            <div class="project-meta">
+              一篇分析无我与慈悲概念，并探讨这些理念如何贯穿又挑战主要佛教传统的文章。
+            </div>
+          </li>
+        </ul>
+
+        <h3>随笔与感悟</h3>
+        <ul class="timeline-list">
+          <li class="timeline-item">
+            <div class="timeline-date">Written December 2024 · Published November 2025</div>
+            <a href="writing/essay1.html">
+              The Beauty in Life
+            </a>
+            <div class="project-meta">
+              一篇关于情绪、天气、变化与喜悦的反思性随笔。
+            </div>
+          </li>
+        </ul>
+      </section>
+
+      <section id="contact">
+        <h2>联系方式</h2>
+        <p>
+          如需讲座、合作或咨询，欢迎与我联系。
+        </p>
+        <p>
+          最快捷、最可靠的方式是通过 LinkedIn 与我取得联系。
+        </p>
+
+        <div class="socials">
+          <a href="https://www.linkedin.com/in/thorstein-eliassen-303382364" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
+            <img src="LI-In-Bug.png" alt="LinkedIn" />
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <span>© <span id="year"></span> Thorstein</span>
+      <span>基于 GitHub Pages 构建</span>
+    </footer>
+  </div>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

@@ -1,26 +1,148 @@
-<h1>The Beauty in Life</h1>
-<div class="meta">By Thorstein · Written 2024 · Published 2025</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Beauty in Life – Thorstein</title>
 
-<p>There is beauty to be found in even the simplest things, even in the least likely places you would think to look. A warm sunny day feels very nice—everyone would probably agree—but so too can a rainy, cloudy, or even cold and dark day. Each type of weather lets you see the world through a new lens, and there is value in that.</p>
+  <style>
+    :root {
+      --bg: #0f172a;
+      --bg-elevated: #020617;
+      --card-bg: #020617;
+      --accent: #38bdf8;
+      --accent-soft: rgba(56, 189, 248, 0.12);
+      --text-main: #e5e7eb;
+      --text-muted: #9ca3af;
+      --border-subtle: #1f2937;
+      --shadow-soft: 0 18px 45px rgba(15, 23, 42, 0.65);
+      --radius-lg: 18px;
+    }
 
-<p>It reminds you very directly that there is no objective state of the world, that it is in a constant state of flux and change, and that it’s okay. Every day you look outside, you are presented with a reminder of the impermanence of everything, if only you take a moment to realize it.</p>
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.7;
+      color: var(--text-main);
+      background: radial-gradient(circle at top left, #1e293b, #020617 50%, #000 100%);
+      display: flex;
+      justify-content: center;
+      padding: 32px 16px;
+    }
 
-<p>There is also beauty in all the individual types of weather. Take rain, for example. Rain makes you wet, and being wet makes you suffer—yet it does so only for as long as you cling to staying dry. A swimmer doesn’t suffer when they jump into water, no matter how wet they get. The suffering you feel as a result of being wet comes from your wish to stay dry.</p>
+    .page {
+      width: 100%;
+      max-width: 900px;
+      background: linear-gradient(135deg, rgba(15, 23, 42, 0.94), rgba(2, 6, 23, 0.98));
+      border-radius: 24px;
+      border: 1px solid rgba(148, 163, 184, 0.18);
+      box-shadow: var(--shadow-soft);
+      padding: 28px 22px 40px;
+      backdrop-filter: blur(18px);
+    }
 
-<p>If you can change this mindset, you will experience wetness as it is. A light rain might feel like nature itself is gently giving you kisses, while a heavy rainstorm can feel intensely invigorating, pulling you out of your head and reminding you that you are alive.</p>
+    a {
+      color: var(--accent);
+    }
 
-<h2>Emotions as Weather</h2>
+    header {
+      margin-bottom: 24px;
+      border-bottom: 1px solid rgba(148, 163, 184, 0.25);
+      padding-bottom: 14px;
+    }
 
-<p>Emotions are in many ways similar to weather. They are passing events that color our minds, shifting and shaping our perspectives on just about everything—just like weather.</p>
+    h1 {
+      margin-bottom: 6px;
+      font-size: 1.9rem;
+      letter-spacing: -0.02em;
+    }
 
-<p>The same process of shifting our perspectives and our clinging to weather can be applied to emotions. Emotions too shift and change; they appear and disappear, impermanent just like weather. If we look, we’ll find our reminder here as well.</p>
+    .meta {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      margin-bottom: 16px;
+    }
 
-<p>There is also beauty in emotions. Each and every emotion, even disturbing ones, has something valuable to give us. Sure, happiness is nice—but so can sorrow, lethargy, and even rage be too.</p>
+    article {
+      font-size: 1.02rem;
+    }
 
-<p>Sorrow feels bad at first, but it’s a powerful feeling that points to a deeply felt love or value. There is value in experiencing these emotions because they act as messengers of information we might not think about in our day-to-day lives.</p>
+    article h2 {
+      margin-top: 32px;
+      font-size: 1.3rem;
+    }
 
-<p>Lethargy can point us toward necessary rest or introspection; it’s a powerful force telling us to slow down and take a breath. Rage is intense and consuming, but it also alerts us to our boundaries, unmet needs, or conflicts around our deeply held values.</p>
+    article h3 {
+      margin-top: 22px;
+      font-size: 1.15rem;
+    }
 
-<p>This doesn’t mean you should be captured by your emotions, just like you shouldn’t be captured by the weather. Even if you were to become a master of mindful awareness, the disturbing emotions themselves only stop controlling you—you still experience them as negative forces, even if you acknowledge them and let them pass.</p>
+    footer {
+      margin-top: 40px;
+      border-top: 1px solid rgba(148, 163, 184, 0.25);
+      padding-top: 12px;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
 
-<p>But this change in perspective alters how you perceive them. Not as destructive forces you must cope with through mindfulness and equanimity, but as something beautiful that you can cherish.</p>
+    .back-link {
+      display: inline-block;
+      margin-bottom: 14px;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+    }
+
+    .back-link:hover {
+      color: var(--accent);
+      text-decoration: underline;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+
+    <a href="../index.html#writing" class="back-link">← Back to Writing</a>
+
+    <header>
+      <h1>The Beauty in Life</h1>
+      <div class="meta">By Thorstein · Written December 2024 – Published November 2025</div>
+    </header>
+
+    <article>
+      <p>There is beauty to be found in even the simplest things, even in the least likely places you would think to look. A warm sunny day feels very nice, everyone would probably agree, but so too can a rainy, cloudy, or even cold and dark day. Each type of weather lets you see the world through a new lens, and there is value in that.</p>
+
+      <p>It reminds you very directly that there is no objective state of the world, that it is in a constant state of flux and change, and that it’s okay. Every day you look outside, you are presented with a reminder of the impermanence of everything, if only you take a moment to realize it.</p>
+
+      <p>There is also beauty in all the individual types of weather. Take rain, for example. Rain makes you wet, and being wet makes you suffer, yet it does so only for as long as you cling to staying dry. A swimmer doesn’t suffer when they jump into water, no matter how wet they get. The suffering you feel as a result of being wet comes from your wish to stay dry.</p>
+
+      <p>If you can change this mindset, you will experience wetness as it is. A light rain might feel like nature itself is gently giving you kisses, while a heavy rainstorm can feel intensely invigorating, pulling you out of your head and reminding you that you are alive.</p>
+
+      <h2>Emotions as Weather</h2>
+
+      <p>Emotions are in many ways similar to weather. They are passing events that color our minds, shifting and shaping our perspectives on just about everything, just like weather.</p>
+
+      <p>The same process of shifting our perspectives and our clinging to weather can be applied to emotions. Emotions too shift and change; they appear and disappear, impermanent just like weather. If we look, we’ll find our reminder here as well.</p>
+
+      <p>There is also beauty in emotions. Each and every emotion, even disturbing ones, has something valuable to give us. Sure, happiness is nice, but so can sorrow, lethargy, and even rage be too.</p>
+
+      <p>Sorrow feels bad at first, but it’s a powerful feeling that points to a deeply felt love or value. There is value in experiencing these emotions because they act as messengers of information we might not think about in our day-to-day lives.</p>
+
+      <p>Lethargy can point us toward necessary rest or introspection; it’s a powerful force telling us to slow down and take a breath. Rage is intense and consuming, but it also alerts us to our boundaries, unmet needs, or conflicts around our deeply held values.</p>
+
+      <p>This doesn’t mean you should be captured by your emotions, just like you shouldn’t be captured by the weather. Even if you were to become a master of mindful awareness, the disturbing emotions themselves only stop controlling you, you still experience them as negative forces, even if you acknowledge them and let them pass.</p>
+
+      <p>But this change in perspective alters how you perceive them. Not as destructive forces you must cope with through mindfulness and equanimity, but as something beautiful that you can cherish.</p>
+    </article>
+
+    <footer>
+      © <span id="year"></span> Thorstein
+    </footer>
+  </div>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

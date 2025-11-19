@@ -45,6 +45,41 @@
       backdrop-filter: blur(18px);
     }
 
+    .header-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+}
+
+.lang-switcher {
+  display: flex;
+  gap: 8px;
+  font-size: 0.82rem;
+}
+
+.lang-switcher a {
+  text-decoration: none;
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.5);
+  color: var(--text-muted);
+  background: rgba(15, 23, 42, 0.9);
+  transition: all 0.18s ease;
+}
+
+.lang-switcher a:hover {
+  color: var(--accent);
+  border-color: rgba(56, 189, 248, 0.7);
+  box-shadow: 0 0 0 1px rgba(56, 189, 248, 0.35);
+}
+
+.lang-switcher a.active {
+  color: var(--accent);
+  border-color: rgba(56, 189, 248, 0.9);
+  background: var(--accent-soft);
+}
+
     header {
       border-bottom: 1px solid rgba(148, 163, 184, 0.22);
       padding-bottom: 18px;
@@ -275,6 +310,9 @@
         padding: 18px 14px 16px;
         border-radius: 18px;
       }
+      .header-right {
+  align-items: flex-start;
+}
       header {
         align-items: flex-start;
       }
@@ -293,22 +331,31 @@
 <body>
   <div class="page">
     <header>
-      <div class="hero-text">
-        <div class="pill">Space law · Emerging tech · Ethics</div>
-        <h1>Hi, I’m Thorstein</h1>
-        <p class="subtitle">
-          Law student in Norway with a focus on emerging legal fields, international co-operation
-          and the governance of space technologies.
-        </p>
-      </div>
-      <nav>
-        <a href="#about">About</a>
-        <a href="#projects">Experience</a>
-        <a href="#public-appearances">Public appearances</a>
-        <a href="#Writing">Writing</a>
-        <a href="#contact">Contact</a>
-      </nav>
-    </header>
+  <div class="hero-text">
+    <div class="pill">Space law · Emerging tech · Ethics</div>
+    <h1>Hi, I’m Thorstein</h1>
+    <p class="subtitle">
+      Law student in Norway with a focus on emerging legal fields, international co-operation
+      and the governance of space technologies.
+    </p>
+  </div>
+
+  <div class="header-right">
+    <div class="lang-switcher">
+      <a href="index-no.html">Norsk</a>
+      <a href="index.html" class="active">English</a>
+      <a href="index-zh.html">中文</a>
+    </div>
+
+    <nav>
+      <a href="#about">About</a>
+      <a href="#projects">Experience</a>
+      <a href="#public-appearances">Public appearances</a>
+      <a href="#writing">Writing</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
 
     <main>
       <section id="about">

@@ -5,106 +5,428 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Thorstein</title>
   <style>
+    :root {
+      --bg: #0f172a;
+      --bg-elevated: #020617;
+      --card-bg: #020617;
+      --accent: #38bdf8;
+      --accent-soft: rgba(56, 189, 248, 0.12);
+      --text-main: #e5e7eb;
+      --text-muted: #9ca3af;
+      --border-subtle: #1f2937;
+      --shadow-soft: 0 18px 45px rgba(15, 23, 42, 0.65);
+      --radius-lg: 18px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
     body {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      max-width: 800px;
-      margin: 40px auto;
-      padding: 0 16px;
-      line-height: 1.6;
-    }
-    header {
-      border-bottom: 1px solid #ddd;
-      margin-bottom: 24px;
-      padding-bottom: 8px;
-    }
-    h1 {
       margin: 0;
+      min-height: 100vh;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.6;
+      color: var(--text-main);
+      background: radial-gradient(circle at top left, #1e293b, #020617 50%, #000 100%);
+      display: flex;
+      justify-content: center;
+      padding: 32px 16px;
     }
+
+    .page {
+      width: 100%;
+      max-width: 900px;
+      background: linear-gradient(135deg, rgba(15, 23, 42, 0.94), rgba(2, 6, 23, 0.98));
+      border-radius: 24px;
+      border: 1px solid rgba(148, 163, 184, 0.18);
+      box-shadow: var(--shadow-soft);
+      padding: 28px 22px 22px;
+      backdrop-filter: blur(18px);
+    }
+
+    header {
+      border-bottom: 1px solid rgba(148, 163, 184, 0.22);
+      padding-bottom: 18px;
+      margin-bottom: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+
+    .hero-text {
+      max-width: 540px;
+    }
+
+    h1 {
+      margin: 0 0 6px;
+      font-size: 2.1rem;
+      letter-spacing: -0.02em;
+    }
+
+    .subtitle {
+      margin: 0;
+      color: var(--text-muted);
+      font-size: 0.98rem;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      margin-top: 8px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    nav {
+      display: flex;
+      gap: 10px;
+      font-size: 0.9rem;
+      flex-wrap: wrap;
+    }
+
     nav a {
-      margin-right: 12px;
       text-decoration: none;
+      color: var(--text-muted);
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      transition: all 0.18s ease;
     }
+
     nav a:hover {
+      color: var(--accent);
+      border-color: rgba(56, 189, 248, 0.5);
+      background: rgba(15, 23, 42, 0.7);
+    }
+
+    main {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    section {
+      background: var(--card-bg);
+      border-radius: var(--radius-lg);
+      padding: 18px 16px 16px;
+      border: 1px solid var(--border-subtle);
+      position: relative;
+      overflow: hidden;
+    }
+
+    section::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top right, rgba(56, 189, 248, 0.12), transparent 60%);
+      opacity: 0;
+      transition: opacity 0.2s ease;
+      pointer-events: none;
+    }
+
+    section:hover::before {
+      opacity: 1;
+    }
+
+    h2 {
+      margin: 0 0 8px;
+      font-size: 1.1rem;
+    }
+
+    p {
+      margin: 0 0 8px;
+      font-size: 0.95rem;
+    }
+
+    ul {
+      margin: 4px 0 0;
+      padding-left: 18px;
+      font-size: 0.95rem;
+    }
+
+    li + li {
+      margin-top: 8px;
+    }
+
+    .project-title {
+      font-weight: 600;
+    }
+
+    .project-meta {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 2px 8px;
+      margin-right: 6px;
+      margin-top: 3px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    .timeline-list {
+      list-style: none;
+      padding-left: 0;
+      margin: 0;
+      border-left: 1px solid rgba(148, 163, 184, 0.35);
+    }
+
+    .timeline-item {
+      padding-left: 14px;
+      position: relative;
+      margin: 0 0 10px;
+    }
+
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      left: -5px;
+      top: 4px;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.2);
+    }
+
+    .timeline-date {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 2px;
+    }
+
+    a {
+      color: var(--accent);
+    }
+
+    a:hover {
       text-decoration: underline;
     }
+
+    #contact p {
+      margin-bottom: 10px;
+    }
+
+    .socials {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 4px;
+    }
+
+    .socials a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 30px;
+      height: 30px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      transition: all 0.18s ease;
+    }
+
+    .socials a:hover {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 1px rgba(56, 189, 248, 0.4);
+    }
+
+    .socials img {
+      width: 18px;
+      height: 18px;
+      display: block;
+    }
+
     footer {
-      margin-top: 40px;
-      font-size: 0.9rem;
-      color: #666;
-      border-top: 1px solid #eee;
-      padding-top: 12px;
+      margin-top: 18px;
+      padding-top: 10px;
+      border-top: 1px solid rgba(148, 163, 184, 0.28);
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    footer span {
+      opacity: 0.9;
+    }
+
+    @media (max-width: 640px) {
+      .page {
+        padding: 18px 14px 16px;
+        border-radius: 18px;
+      }
+      header {
+        align-items: flex-start;
+      }
+      h1 {
+        font-size: 1.7rem;
+      }
+      nav {
+        margin-top: 6px;
+      }
+      section {
+        padding: 14px 12px 12px;
+      }
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>Hi, I’m Thorstein</h1>
-    <p>Law student, aspiring lawyer, and Buddhist nerd.</p>
-    <nav>
-      <a href="#about">About</a>
-      <a href="#projects">Projects</a>
-      <a href="#contact">Contact</a>
-    </nav>
-  </header>
+  <div class="page">
+    <header>
+      <div class="hero-text">
+        <div class="pill">Space law · Emerging tech · Ethics</div>
+        <h1>Hi, I’m Thorstein</h1>
+        <p class="subtitle">
+          Law student in Norway with a focus on emerging legal fields, international co-operation
+          and the governance of space technologies.
+        </p>
+      </div>
+      <nav>
+        <a href="#about">About</a>
+        <a href="#projects">Experience</a>
+        <a href="#public-appearances">Public appearances</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
 
-  <main>
-    <section id="about">
-      <h2>About me</h2>
-      <p>
-        I study law in Norway and spend too much time thinking about ethics and philosophy. Interested in emerging legal fields and international co-operation.
-        Spent time doing legal research for a nano-satellite project, was selected as one of two Norwegian representatives to the annual space law course hosted by the
-        European Centre for Space Law, under the European Space Agency. Invited speaker at the fourth international space law conference in Oslo, may 2026. 
-      </p>
-    </section>
+    <main>
+      <section id="about">
+        <h2>About me</h2>
+        <p>
+          I study law in Norway and spend too much time thinking about ethics and philosophy.
+          I’m particularly interested in emerging legal fields and international co-operation.
+        </p>
+        <p>
+          I have experience doing legal research for a nanosatellite project, and I was selected as
+          one of two Norwegian representatives to the annual space law course hosted by the
+          European Centre for Space Law under the European Space Agency.
+        </p>
+        <p>
+          I have also been invited as a speaker at the fourth international space law conference
+          in Oslo, May 2026.
+        </p>
+      </section>
 
-    <section id="projects">
-      <h2>Projects</h2>
-      <ul>
-        <li>Legal advisor at Interstellar UiA
-        - Advising a nanosatellite development project on legal compliance with international space law, 
-          as well as relevant national laws. Such as export control, telecommunications and national security legislation.
-        - Drafted internal legal guidelines to ensure project alignment with applicable frameworks.
-        - Worked with engineers to translate legal requirements into practical project planning.</li>
-        <li>Mentor - NORSTEC
-        - Volunteer in the mentorship program at NORSTEC
-        - Helping member organizations with regulatory compliance in the fields of satellites, rocketry 
-          and labor/organizational law.</li>
-      </ul>
-    </section>
+      <section id="projects">
+        <h2>Experience & projects</h2>
+        <ul>
+          <li>
+            <div class="project-title">Legal advisor · Interstellar UiA</div>
+            <div class="project-meta">
+              Nanosatellite development · Export control · Telecommunications · National security
+            </div>
+            <ul>
+              <li>Advising a nanosatellite development project on compliance with international space law and applicable national legislation.</li>
+              <li>Drafted internal legal guidelines to ensure project alignment with export control, telecoms and national security frameworks.</li>
+              <li>Collaborated with engineers to translate legal requirements into concrete project planning.</li>
+            </ul>
+            <div>
+              <span class="tag">Space law</span>
+              <span class="tag">Compliance</span>
+            </div>
+          </li>
+          <li>
+            <div class="project-title">Mentor · NORSTEC</div>
+            <div class="project-meta">Volunteer mentorship · Norwegian space sector</div>
+            <ul>
+              <li>Volunteer in the mentorship program at NORSTEC.</li>
+              <li>Supporting member organisations with regulatory questions in satellites, rocketry and labour/organisational law.</li>
+            </ul>
+            <div>
+              <span class="tag">Regulation</span>
+              <span class="tag">Mentoring</span>
+            </div>
+          </li>
+        </ul>
+      </section>
 
-    <section id="public appearances">
-      <h2>Public Appearances</h2>
-      <h3>Articles</h3>
-      <ul>
-        <li>19 sep 2025 - <a href="https://www.finnmarksposten.no/thorstein-26-fra-havoysund-satser-pa-verdensrommet/s/5-94-323780">Interview in finnmarksposten</a> </li>
-      </ul>
-      <h3>TV/Radio</h3>
-      <ul>
-        <li>22 sep 2025 - <a href="https://radio.nrk.no/serie/distriktsprogram-finnmark/sesong/202509/DKFI01018225#t=1h32m40s">Conversation on the importance of space law on radio at NRK P1</a> </li>
-      </ul>
-      <h3>In-person Events</h3>
-      
-    <section id="contact">
-      <h2>Contact</h2>
-      <p>
-        You can reach me on GitHub (this profile) or whatever contact info you’d like to add here.
-      </p>
+      <section id="public-appearances">
+        <h2>Public appearances</h2>
+
+        <h3>Articles</h3>
+        <ul class="timeline-list">
+          <li class="timeline-item">
+            <div class="timeline-date">19 Sep 2025</div>
+            <a
+              href="https://www.finnmarksposten.no/thorstein-26-fra-havoysund-satser-pa-verdensrommet/s/5-94-323780"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Interview in Finnmarksposten
+            </a>
+          </li>
+        </ul>
+
+        <h3>TV / Radio</h3>
+        <ul class="timeline-list">
+          <li class="timeline-item">
+            <div class="timeline-date">22 Sep 2025</div>
+            <a
+              href="https://radio.nrk.no/serie/distriktsprogram-finnmark/sesong/202509/DKFI01018225#t=1h32m40s"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Conversation on the importance of space law · NRK P1
+            </a>
+          </li>
+        </ul>
+
+        <h3>In-person events</h3>
+        <p>
+          Forthcoming: invited speaker at the fourth international space law conference in Oslo, May 2026.
+        </p>
+      </section>
+
+      <section id="contact">
+        <h2>Contact</h2>
+        <p>
+          For speaking engagements, collaboration or legal research enquiries, feel free to reach out.
+        </p>
+        <p>
+          The best way to get in touch is via LinkedIn or GitHub.
+        </p>
 
         <div class="socials">
-    <a href="www.linkedin.com/in/thorstein-eliassen-303382364" aria-label="LinkedIn">
-      <img src="LI-In-Bug.png" alt="LinkedIn" />
-    </a>
+          <a href="https://www.linkedin.com/in/thorstein-eliassen-303382364" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
+            <img src="LI-In-Bug.png" alt="LinkedIn" />
+          </a>
+          <!--
+          <a href="https://github.com/YOUR-USERNAME" aria-label="GitHub" target="_blank" rel="noopener noreferrer">
+            <img src="github-mark.png" alt="GitHub" />
+          </a>
+          -->
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <span>© <span id="year"></span> Thorstein</span>
+      <span>Built with GitHub Pages</span>
+    </footer>
   </div>
-    </section>
-  </main>
 
-
-  
-  <footer>
-    <p>© <span id="year"></span> Thorstein</p>
-    <script>
-      document.getElementById("year").textContent = new Date().getFullYear();
-    </script>
-  </footer>
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>

@@ -52,7 +52,7 @@
     ]
   }
   </script>
-  <style>
+   <style>
     :root {
       --bg: #0f172a;
       --bg-elevated: #020617;
@@ -98,11 +98,7 @@
   flex-direction: column;
   align-items: flex-end;
   gap: 8px;
-  flex: 0 0 auto;   /* do not stretch across row */
-  flex-shrink: 0;   /* do not collapse */
 }
-
-
 
 .lang-switcher {
   display: flex;
@@ -132,25 +128,13 @@
   background: var(--accent-soft);
 }
 
-    header {
-  border-bottom: 1px solid rgba(148, 163, 184, 0.22);
-  padding-bottom: 18px;
-  margin-bottom: 20px;
-  display: flex;
-  gap: 16px;
-  justify-content: space-between;
-  align-items: flex-start;
-  flex-wrap: nowrap; /* keep portrait top-right on desktop */
-}
-
-
-    .portrait {
-  width: 112px;
-  height: 112px;
+     .portrait {
+  width: 144px;
+  height: 144px;
   border-radius: 999px;
   overflow: hidden;
   border: 2px solid rgba(148, 163, 184, 0.7);
-  margin-bottom: 6px;
+  margin-bottom: 4px;
 }
 
 .portrait img {
@@ -160,11 +144,21 @@
   display: block;
 }
 
-    .hero-text {
-  max-width: 540px;
-  min-width: 0; /* prevents layout overflow forcing wrap */
-}
 
+    header {
+      border-bottom: 1px solid rgba(148, 163, 184, 0.22);
+      padding-bottom: 18px;
+      margin-bottom: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+
+    .hero-text {
+      max-width: 540px;
+    }
 
     h1 {
       margin: 0 0 6px;
@@ -377,35 +371,29 @@
     }
 
     @media (max-width: 640px) {
-  .page {
-    padding: 18px 14px 16px;
-    border-radius: 18px;
-  }
-
-  header {
-    align-items: flex-start;
-    flex-wrap: wrap;
-  }
-
-  .header-right {
-    align-items: flex-start;
-  }
-
-  h1 {
-    font-size: 1.7rem;
-  }
-
-  nav {
-    margin-top: 6px;
-  }
-
-  section {
-    padding: 14px 12px 12px;
-  }
+      .page {
+        padding: 18px 14px 16px;
+        border-radius: 18px;
+      }
+      .header-right {
+  align-items: flex-start;
 }
-
+      header {
+        align-items: flex-start;
+      }
+      h1 {
+        font-size: 1.7rem;
+      }
+      nav {
+        margin-top: 6px;
+      }
+      section {
+        padding: 14px 12px 12px;
+      }
+    }
   </style>
 </head>
+  
 <body>
   <div class="page">
     <header>

@@ -52,7 +52,7 @@
     ]
   }
   </script>
-   <style>
+  <style>
     :root {
       --bg: #0f172a;
       --bg-elevated: #020617;
@@ -128,7 +128,18 @@
   background: var(--accent-soft);
 }
 
-     .portrait {
+    header {
+      border-bottom: 1px solid rgba(148, 163, 184, 0.22);
+      padding-bottom: 18px;
+      margin-bottom: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+
+    .portrait {
   width: 144px;
   height: 144px;
   border-radius: 999px;
@@ -143,18 +154,6 @@
   object-fit: cover;
   display: block;
 }
-
-
-    header {
-      border-bottom: 1px solid rgba(148, 163, 184, 0.22);
-      padding-bottom: 18px;
-      margin-bottom: 20px;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 16px;
-      justify-content: space-between;
-      align-items: flex-end;
-    }
 
     .hero-text {
       max-width: 540px;
@@ -393,7 +392,6 @@
     }
   </style>
 </head>
-  
 <body>
   <div class="page">
     <header>
@@ -406,7 +404,7 @@
     </p>
   </div>
 
-       <div class="header-right">
+      <div class="header-right">
   <div class="portrait">
     <img src="portrait.jpeg" alt="Portrait of Thorstein">
   </div>
@@ -417,20 +415,22 @@
   <nav>...</nav>
 </div>
 
-  <div class="lang-switcher">
-    <a href="index-no.html">Norsk</a>
-    <a href="index.html" class="active">English</a>
-    <a href="index-zh.html">中文</a>
-  </div>
 
-  <nav>
-    <a href="#about">About</a>
-    <a href="#projects">Experience</a>
-    <a href="#public-appearances">Public appearances</a>
-    <a href="#writing">Writing</a>
-    <a href="#contact">Contact</a>
-  </nav>
-</div>
+  <div class="header-right">
+    <div class="lang-switcher">
+      <a href="index-no.html">Norsk</a>
+      <a href="index.html" class="active">English</a>
+      <a href="index-zh.html">中文</a>
+    </div>
+
+    <nav>
+      <a href="#about">About</a>
+      <a href="#projects">Experience</a>
+      <a href="#public-appearances">Public appearances</a>
+      <a href="#writing">Writing</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
 </header>
 
     <main>
@@ -452,55 +452,37 @@
       </section>
 
       <section id="projects">
-  <h2>Experience & projects</h2>
-  <ul>
-    <li>
-      <div class="project-title">Legal advisor · Interstellar UiA</div>
-      <div class="project-meta">
-        Nanosatellite development · Export control · Telecommunications · National security
-      </div>
-      <ul>
-        <li>Advising a nanosatellite development project on compliance with international space law and applicable national legislation.</li>
-        <li>Drafted internal legal guidelines to ensure project alignment with export control, telecoms and national security frameworks.</li>
-        <li>Collaborated with engineers to translate legal requirements into concrete project planning.</li>
-      </ul>
-      <div>
-        <span class="tag">Space law</span>
-        <span class="tag">Compliance</span>
-      </div>
-    </li>
-
-    <li>
-      <div class="project-title">Mentor · NORSTEC</div>
-      <div class="project-meta">Volunteer mentorship · Norwegian space sector</div>
-      <ul>
-        <li>Volunteer in the mentorship program at NORSTEC.</li>
-        <li>Supporting member organisations with regulatory questions in satellites, rocketry and labour/organisational law.</li>
-      </ul>
-      <div>
-        <span class="tag">Regulation</span>
-        <span class="tag">Mentoring</span>
-      </div>
-    </li>
-
-    <li>
-      <div class="project-title">Participant · Space Law Summer Programme 2025 — European Centre for Space Law (ECSL)</div>
-      <div class="project-meta">Intensive two-week academic programme · Tallinn</div>
-      <ul>
-        <li>Participated in an intensive two-week summer programme hosted by the European Centre for Space Law, featuring advanced lectures and seminars on international and European space law and cyber-security.</li>
-        <li>Worked on a comprehensive group project examining the legal implementation of a novel cyber-security solution in the space sector.</li>
-        <li>Presented the final project and legal analysis before an academic and professional jury.</li>
-      </ul>
-      <div>
-        <span class="tag">Space law</span>
-        <span class="tag">Cyber security</span>
-        <span class="tag">Compliance</span>
-        <span class="tag">Policy</span>
-      </div>
-    </li>
-  </ul>
-</section>
-
+        <h2>Experience & projects</h2>
+        <ul>
+          <li>
+            <div class="project-title">Legal advisor · Interstellar UiA</div>
+            <div class="project-meta">
+              Nanosatellite development · Export control · Telecommunications · National security
+            </div>
+            <ul>
+              <li>Advising a nanosatellite development project on compliance with international space law and applicable national legislation.</li>
+              <li>Drafted internal legal guidelines to ensure project alignment with export control, telecoms and national security frameworks.</li>
+              <li>Collaborated with engineers to translate legal requirements into concrete project planning.</li>
+            </ul>
+            <div>
+              <span class="tag">Space law</span>
+              <span class="tag">Compliance</span>
+            </div>
+          </li>
+          <li>
+            <div class="project-title">Mentor · NORSTEC</div>
+            <div class="project-meta">Volunteer mentorship · Norwegian space sector</div>
+            <ul>
+              <li>Volunteer in the mentorship program at NORSTEC.</li>
+              <li>Supporting member organisations with regulatory questions in satellites, rocketry and labour/organisational law.</li>
+            </ul>
+            <div>
+              <span class="tag">Regulation</span>
+              <span class="tag">Mentoring</span>
+            </div>
+          </li>
+        </ul>
+      </section>
 
       <section id="public-appearances">
         <h2>Public appearances</h2>
